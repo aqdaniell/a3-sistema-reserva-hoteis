@@ -1,12 +1,20 @@
 const app = require('./app');
 const { getDatabase } = require('./database/connection');
+const { runMigrations } = require('./database/migrate');
 
 const PORT = process.env.PORT || 3000;
 
 try {
   // Inicializa a conexão com o banco de dados
-  getDatabase();
+  const db = getDatabase();
   console.log('Conexão com SQLite estabelecida com sucesso.');
+
+  const applied = runMigrations(db);
+  console.log(
+    applied.length
+      ? `Migrations aplicadas: ${applied.join(', ')}`
+      : 'Banco de dados atualizado (nenhuma migration pendente).'
+  );
 
   app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
