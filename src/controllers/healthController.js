@@ -15,10 +15,10 @@ function getHealth(req, res) {
       database: result && result.alive === 1 ? 'connected' : 'error'
     });
   } catch (error) {
+    console.error('Erro no health check:', error);
     return res.status(500).json({
       status: 'error',
-      message: 'Falha ao verificar integridade do sistema',
-      error: error.message
+      message: 'Falha ao verificar integridade do sistema'
     });
   }
 }

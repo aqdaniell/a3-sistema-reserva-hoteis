@@ -17,13 +17,34 @@ app.use((req, res) => {
   });
 });
 
-// Middleware global de tratamento de erros (500)
+// Middleware global de tratamento de erros
 app.use((err, req, res, next) => {
-  console.error('Erro interno:', err);
-  res.status(500).json({
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  const hasValidStatus =
+    err &&
+    Number.isInteger(err.statusCode) &&
+    err.statusCode >= 400 &&
+    err.statusCode <= 599;
+
+  const statusCode = hasValidStatus ? err.statusCode : 500;
+  const isServerError = statusCode >= 500;
+
+  if (isServerError) {
+    console.error('Erro interno:', err);
+  }
+
+  const message = isServerError
+    ? 'Erro interno do servidor'
+    : err.type === 'entity.parse.failed'
+      ? 'JSON inválido no corpo da requisição'
+      : (err && err.message) || 'Erro na requisição';
+
+  res.status(statusCode).json({
     status: 'error',
-    message: 'Erro interno do servidor',
-    error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    message
   });
 });
 
