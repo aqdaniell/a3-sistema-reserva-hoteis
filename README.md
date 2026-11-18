@@ -3,7 +3,7 @@ Sistema de reserva e gestão de hotéis — Projeto A3 UNISUL
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Runtime:** [Node.js](https://nodejs.org/) (v18+)
 - **Framework Web:** [Express](https://expressjs.com/)
@@ -13,7 +13,7 @@ Sistema de reserva e gestão de hotéis — Projeto A3 UNISUL
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```text
 a3-sistema-reserva-hoteis/
@@ -38,7 +38,7 @@ a3-sistema-reserva-hoteis/
 
 ---
 
-## 🚀 Instalação e Execução
+## Instalação e Execução
 
 ### 1. Pré-requisitos
 Ter o [Node.js](https://nodejs.org/) instalado.
@@ -85,7 +85,7 @@ npm test
 
 ---
 
-## 🔍 Rotas Disponíveis
+## Rotas Disponíveis
 
 | Método | Rota | Descrição |
 | :--- | :--- | :--- |
@@ -104,6 +104,6 @@ Exemplo de resposta:
 
 ---
 
-## 📄 Licença
+## Licença
 
 Distribuído sob a licença MIT. Veja o arquivo [LICENSE](LICENSE).
